@@ -28,13 +28,13 @@
     height: 100%;
     font-size: var(--fontsize);
     box-sizing: border-box;
+    overflow: hidden;
   }
   :global(body) {
     margin: 0;
     color: #333;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     background: #f8f8f8;
-    overflow: hidden;
     -webkit-user-select: none;
     user-select: none;
     cursor: default;
