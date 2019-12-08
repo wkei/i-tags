@@ -13,11 +13,13 @@
 
 <style>
   textarea {
+    position: absolute;
+    left: 100%;
+    top: 100%;
     width: 0;
     height: 0;
     margin: 0;
+    padding: 1;
     border: none;
-    position: absolute;
-    visibility: hidden;
   }
 </style>
