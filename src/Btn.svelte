@@ -1,10 +1,19 @@
 <script>
-  import { createEventDispatcher } from 'svelte'
-
+  import { onMount, createEventDispatcher } from 'svelte'
 	const dispatch = createEventDispatcher()
+
+  let el
+
+  onMount(() => {
+    const event = el.ontouchstart ? 'touchstart' : 'click'
+    const handler = () => dispatch('tap')
+    el.addEventListener(event, handler)
+
+    return () => el.removeEventListener(event, handler)
+	});
 </script>
 
-<button class='btn' on:click={() => dispatch('tap')}>
+<button class='btn' bind:this={el}>
   <slot></slot>
 </button>
 

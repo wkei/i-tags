@@ -46,6 +46,7 @@
     flex-wrap: wrap;
     padding: 1em;
     border-bottom: 1px solid #eee;
+    background: #fff;
   }
   h1 {
     margin: 0 auto 0 0;

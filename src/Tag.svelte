@@ -1,8 +1,9 @@
 <script>
+  import { onMount } from 'svelte'
   import { selectedTags } from './store.js'
-  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
 
   export let tag
+  let el
   let selected = false
   $: style = selected ? selectedStyle() : ''
 
@@ -11,6 +12,13 @@
       selected = false
     }
   })
+
+  onMount(() => {
+    const event = el.ontouchstart ? 'touchstart' : 'click'
+    el.addEventListener(event, select)
+
+    return () => el.removeEventListener(event, select)
+	});
 
   function select() {
     selected = !selected 
@@ -22,21 +30,25 @@
     }
   }
 
-  function randomHsl(l = 'light') {
+  function isDarkMode() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+  }
+
+  function randomHsl(dark) {
     return {
       h: 360 * Math.random(),
       s: 20 + 50 * Math.random(),
-      l: (isDarkMode ? 30 : 60) + 10 * Math.random()
+      l: (dark ? 30 : 60) + 10 * Math.random()
     }
   }
 
   function selectedStyle() {
-    const { h, s, l } = randomHsl()
+    const { h, s, l } = randomHsl(isDarkMode())
     return `background-color: hsl(${h}, ${s}%, ${l}%)`
   }
 </script>
 
-<em class='tag' style={style} on:click={select}>
+<em class='tag' style={style} bind:this={el}>
   {tag}
 </em>
 

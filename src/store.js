@@ -7,8 +7,9 @@ export const selectedTags = writable([])
 const defaultRawTags = `
 GR
 #ricohgr #grsnaps
+
 MINIMAL
-#minimalzine #gominimalmag
+#minimal
 `
 export const rawTags = writable(localStorage.getItem('tags') || defaultRawTags)
 
